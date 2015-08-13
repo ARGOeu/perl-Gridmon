@@ -1,0 +1,34 @@
+* 1.0.9-1
+Changed broker to gridmsg101.cern.ch in tests.
+Added support for publishing nagiosName attribute (for multiVO check naming).
+Fix bug #46966: Better error message in SendToMsg when MSG Broker not available
+
+* 1.0.7-1
+Added support for mandatory option SUBMIT_METHOD=nagioscmd|nsca.
+Added documentation for new methods.
+Added method for publishing passive result transparently to Nagios and NSCA.
+
+* 1.0.6-1
+Better filtering of attrs.
+Support for Nagios 3.0 status file.
+Fixed bug (GridMon::Nagios doesn't load hosts and services properly).
+
+* 1.0.5-1
+Internal getCommandFile moved to GridMon::Nagios.
+Added methods for publishing passive results to GridMon::Nagios.
+Added method for publishing simple strings to GridMon::MsgCache.
+First tests for Nagios::Downtimes
+
+* 1.0.4-1
+Nagios/Downtimes.pm - Several bug fixes.
+Added Nagios::Downtime for handling Nagios & GOCDB downtimes. (initial commit)
+
+* 1.0.3-1
+Support metadata.
+GridMon/MsgBroker.pm - Added connection() method to get the connection
+Implemented connection to STOMP broker, and tests
+Fixed  Bug https://savannah.cern.ch/bugs/?43555 : extra EOT in detailsData in GridMon/MetricOutput.pm
+
+* 1.0.1-1
+updated to handle failover stomp URIs
+Initial dir structure for gridmon modules

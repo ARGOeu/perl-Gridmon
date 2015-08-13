@@ -1,0 +1,25 @@
+GridMon version 1.0.1
+======================
+BUILDING
+
+To build an rpm do :
+    make dist
+    cpan2rpm GridMon-X.X.X.tar.gz
+
+INSTALLATION
+
+To install this module type the following:
+
+   perl Makefile.PL
+   make
+   make test
+   make install
+
+DEPENDENCIES
+
+This module requires these other modules and libraries:
+
+  blah blah blah
+
+COPYRIGHT AND LICENCE
+
