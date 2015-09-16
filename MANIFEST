@@ -28,3 +28,4 @@ t/35downtimes.t
 t/98-pod-coverage.t
 t/99-pod.t
 META.yml                                 Module meta-data (added by MakeMaker)
+perl-GridMon.spec
