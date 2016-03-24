@@ -1,6 +1,6 @@
 Name:           perl-GridMon
 # do not forget to change GridMon.pm to put the same version string...
-Version:        1.0.73
+Version:        1.0.74
 Release:        1%{?dist}
 Summary:        GridMon Perl module
 License:        Apache 2
@@ -88,6 +88,8 @@ fi
 %{_mandir}/man3/*
 
 %changelog
+* Thu Mar 24 2016 Emir Imamagic <eimamagi@srce.hr> - 10.0.74-1
+- Change default LCG and GLITE locations
 * Wed Feb 13 2013 Robert Veznaver <robert.veznaver@cern.ch> - 10.0.73-1
 - SAM-3136 Change GridMon::sgutils default GLOBUS location
 * Mon Jan 14 2013 Marian Babik <marian.babik@cern.ch> - 1.0.72-1
