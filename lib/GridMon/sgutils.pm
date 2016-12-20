@@ -32,7 +32,7 @@ use GridMon::Nagios::Passive;
 
 require Exporter;
 @ISA = qw(Exporter);
-@EXPORT_OK = qw($DEFAULT_NAGIOS_CFG $SERVICEURI $SERVICETYPE $METRICNAME $SRM_PATH $GLOBUS_TCP_PORT_RANGE $GLOBUS_LOCATION $EDG_LOCATION $LCG_LOCATION $GLITE_LOCATION $TIMEOUT $VONAME $OUTPUT_TYPE @METRICS %ERRORS %OUTPUT_TYPES %COMMANDS &print_revision &support &printOutput &checkCommands &checkCommand &checkProxy &createProxy &printWLCGList &checkHost &checkEnvironment &checkMetric &print_revision_short &processCommand);
+@EXPORT_OK = qw($DEFAULT_NAGIOS_CFG $SERVICEURI $SERVICETYPE $METRICNAME $SRM_PATH $GLOBUS_TCP_PORT_RANGE $GLOBUS_LOCATION $LCG_LOCATION $GLITE_LOCATION $TIMEOUT $VONAME $OUTPUT_TYPE @METRICS %ERRORS %OUTPUT_TYPES %COMMANDS &print_revision &support &printOutput &checkCommands &checkCommand &checkProxy &createProxy &printWLCGList &checkHost &checkEnvironment &checkMetric &print_revision_short &processCommand);
 
 #########################
 ##
@@ -55,10 +55,8 @@ sub find_java() {
 }
 
 $GLOBUS_LOCATION = $ENV{GLOBUS_LOCATION} || "/usr";
-$GLITE_LOCATION = $ENV{GLITE_LOCATION} || "/opt/glite";
-$LCG_LOCATION = $ENV{LCG_LOCATION} || "/opt/lcg";
-$EDG_LOCATION = $ENV{EDG_LOCATION} || "/opt/edg";
-$VDT_LOCATION = $ENV{VDT_LOCATION} || "/opt";
+$GLITE_LOCATION = $ENV{GLITE_LOCATION} || "/usr";
+$LCG_LOCATION = $ENV{LCG_LOCATION} || "/usr";
 $SRM_PATH = $ENV{SRM_PATH} || "/opt/d-cache/srm";
 $JAVA_HOME = $ENV{JAVA_HOME} || find_java();
 $GLOBUS_TCP_PORT_RANGE = $ENV{GLOBUS_TCP_PORT_RANGE} || "20000,25000";
@@ -121,27 +119,6 @@ $DEFAULT_NAGIOS_CFG = "/etc/nagios/nagios.cfg";
 ##
 #########################
 $OUTPUT_TYPE = $OUTPUT_TYPES{WLCG};
-
-#########################
-##
-##   Set environment variables based on known variables
-##
-#########################
-
-#$ENV{GLOBUS_LOCATION}=$GLOBUS_LOCATION;
-#$ENV{GLITE_LOCATION}=$GLITE_LOCATION;
-#$ENV{LCG_LOCATION}=$LCG_LOCATION;
-#$ENV{EDG_LOCATION} = $EDG_LOCATION;
-#$ENV{SRM_PATH}=$SRM_PATH;
-#$ENV{JAVA_HOME}=$JAVA_HOME;
-#$ENV{LD_LIBRARY_PATH}="$GLOBUS_LOCATION/lib:$GLITE_LOCATION/lib:$LCG_LOCATION/lib:$EDG_LOCATION/lib";
-#$ENV{GLOBUS_TCP_PORT_RANGE}=$GLOBUS_TCP_PORT_RANGE;
-#$ENV{PATH}="/usr/local/bin:/usr/bin:/bin:$GLOBUS_LOCATION/bin:$GLITE_LOCATION/bin:$JAVA_HOME/bin";
-#$ENV{PYTHONPATH}="$GLITE_LOCATION/lib/python2.3/site-packages:$GLITE_LOCATION/lib/python:$GLITE_LOCATION/lib/python2.3/site-packages/amga:$LCG_LOCATION/lib/python:$LCG_LOCATION/lib/python2.3/site-packages";
-#$ENV{HOME}=$HOME;
-# Modifications to work on gLite 3.1 UI
-#$ENV{PYTHONPATH}="$ENV{PYTHONPATH}:/opt/fpconst/lib/python2.3/site-packages:/opt/SOAPpy/lib/python2.3/site-packages";
-#$ENV{LD_LIBRARY_PATH}="$ENV{LD_LIBRARY_PATH}:/opt/c-ares/lib:/opt/xerces-c/lib:/opt/log4cxx/lib:/opt/c-ares/lib:/opt/d-cache/dcap/lib";
 
 #########################
 #########################
