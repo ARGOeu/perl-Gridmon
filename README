@@ -1,4 +1,4 @@
-GridMon version 1.0.74
+GridMon version 1.0.75
 ======================
 BUILDING
 
@@ -35,7 +35,6 @@ This module requires these other modules and libraries:
   perl(JSON)
   perl(MIME::Base64)
   perl(Messaging::Message)
-  perl(Nagios::NSCA::Client)
   perl(Nagios::Plugin)
   perl(Net::SSLeay)
   perl(No::Worries)

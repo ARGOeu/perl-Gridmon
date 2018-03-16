@@ -19,13 +19,11 @@ package GridMon::Nagios::Passive;
 
 use strict;
 use Config::General;
-use Nagios::NSCA::Client;
 use GridMon::Nagios;
 use vars qw(@ISA);
 
 @ISA=("GridMon::Nagios");
 
-my $SEND_NSCA_CONF_FILE="/etc/nagios/send_nsca.cfg";
 my $PASSIVE_MODE_FILE="/etc/nagios-submit.conf";
 
 sub new {
@@ -102,31 +100,15 @@ sub publishPassiveResult {
             my %conf = $config->getall;
 
             # config file must have following option set:
-            # SUBMIT_METHOD=nagioscmd|nsca
+            # SUBMIT_METHOD=nagioscmd
             if ($conf{SUBMIT_METHOD}) {
-                if ( $conf{SUBMIT_METHOD} !~ /nsca|nagioscmd/ ) {
-                    $self->setError("Unknown mechanism defined. Valid options are: nsca, nagioscmd.");
+                if ( $conf{SUBMIT_METHOD} !~ /nagioscmd/ ) {
+                    $self->setError("Unknown mechanism defined. Valid options are: nagioscmd.");
                     return 0;
                 }
                 $self->{SUBMIT_METHOD} = $conf{SUBMIT_METHOD};
             } else {
                 $self->{SUBMIT_METHOD} = "nagioscmd";
-            }
-
-            # if SUBMIT_METHOD is nsca NSCA_HOST must be set
-            # All relevant options are:
-            # NSCA_HOST=...
-            # NSCA_PORT=...
-            # NSCA_CONFIG=...
-            if ($self->{SUBMIT_METHOD} eq "nsca") {
-                if ($conf{NSCA_HOST}) {
-                    $self->{NSCA_HOST} = $conf{NSCA_HOST};
-                    $self->{NSCA_PORT} = $conf{NSCA_PORT} || 5667;
-                    $self->{NSCA_CONFIG} = $conf{NSCA_CONFIG} || $SEND_NSCA_CONF_FILE;
-                } else {
-                    $self->setError("NSCA hostname must be defined if mechanism is \"nsca\".");
-                    return 0;
-                }
             }
         } else {
             $self->{SUBMIT_METHOD} = "nagioscmd";
@@ -148,51 +130,7 @@ sub publishPassiveResult {
         if (! $self->publishPassiveResultString($publishStr)) {
             return 0;
         }
-    } elsif ($self->{SUBMIT_METHOD} eq "nsca") {
-        
-        foreach my $attr (('hostname', 'servicename', 'status', 'output' )) {
-            if (! defined $message->{$attr}) {
-                $self->setError("Missing attribute $attr.");
-                return 0;
-            }
-        }
-        my $line = "$message->{hostname}\t$message->{servicename}\t$message->{status}\t$message->{output}";
-
-        my $nsca = Nagios::NSCA::Client->new(argv => ['-H', $self->{NSCA_HOST}, '-p', $self->{NSCA_PORT}, '-c', $self->{NSCA_CONFIG}]);
-        if (!$nsca) {
-            $self->setError("Error creating NSCA perl client.");
-            return 0;
-        }
-
-        # NSCA doesn't have alarm handler, instead it stays blocked
-        # lets limit it to 5 seconds
-        # These variables will be used to maintain previous alarms
-        my $prevTimer;
-        my $startTime;
-        eval {
-            local $SIG{ALRM} = sub { die "Error connecting to NSCA server." };
-            $startTime = time();
-            $prevTimer = alarm 5;
-            $nsca->runServer() or die "Error connecting to NSCA server.";
-            alarm 0;
-        };
-        $startTime = $prevTimer - (time() - $startTime);
-        alarm $startTime if ($startTime>0);
-        if ($@) {
-            $self->setError($@);
-            return 0;
-        }
-
-        my $packet = $nsca->filter->line2packet($line);
-        if (!$packet) {
-            $self->setError("Error creating NSCA packet from line: $line.");
-            return 0;
-        }
-        if (!$nsca->server->sendPacket($packet)) {
-            $self->setError("Error sending NSCA packet to server.");
-            return 0;
-        }
-    }
+    } 
 
     1;
 }
@@ -265,19 +203,8 @@ It reads $modeFile to select which mechanism is used for publishing
 result. Currently two modes are supported:
   nagioscmd - passive check is published directly to Nagios, 
               method must me executed on the Nagios host
-  nsca - passive check is published via NSCA service
 Mode is defined by SUBMIT_METHOD variable in file $modeFile.
 
-In case when SUBMIT_METHOD is set to nsca, following options are
-expected to be in $modeFile
-  NSCA_HOST - hostname of NSCA server
-            - this option is mandatory
-  NSCA_PORT - port of NSCA server
-            - default value is 5667
-  NSCA_CONFIG - nsca sender configuration file which contains NSCA key and
-                encryption method index
-              - default value is /etc/nagios/send_nsca.cfg
-              
 Arguments are:
   $host - hostname to which service belongs
   $service - name of the service for which passive check is published

@@ -123,43 +123,6 @@ SKIP: {
     $dts->clearError();
 };
 
-if ($res = open(STD, ">nagios.submit")) {
-    $res &&= print STD "SUBMIT_METHOD=nsca\n";
-    $res &&= close STD;
-}
-ok ($res, "successfully created test files");
-SKIP: {
-    skip "failed creating test files", 2 if !$res;
-
-    $dts->{SUBMIT_METHOD}=undef;
-    $res = $dts->publishPassiveResult('localhost','test',0,'test','nagios.submit');
-    ok (!$res, "publishPassiveResult return 0");
-    like ($dts->{ERROR}, qr/NSCA hostname must be defined if mechanism is/, "got correct error message");
-    $dts->clearError();
-};
-
-if ($res = open(STD, ">nagios.submit")) {
-    $res &&= print STD "SUBMIT_METHOD=nsca\n";
-    $res &&= print STD "NSCA_HOST=www.google.com\n";
-    $res &&= print STD "NSCA_PORT=11\n";
-    $res &&= print STD "NSCA_CONFIG=nagios.send\n";
-    $res &&= close STD;
-}
-if ($res &&= open(STD, ">nagios.send")) {
-    $res &&= close STD;
-}
-ok ($res, "successfully created test files");
-SKIP: {
-    skip "failed creating test files", 3 if !$res;
-
-    my $dts = GridMon::Nagios::Passive->new('nagios.cfg');
-    isa_ok $dts, 'GridMon::Nagios::Passive';
-    $res = $dts->publishPassiveResult('localhost','test',0,'test','nagios.submit');
-    ok (!$res, "publishPassiveResult return 0");
-    like ($dts->{ERROR}, qr/Error connecting to NSCA server./, "got correct error message");
-    $dts->clearError();
-};
-
 unlink 'nagios.send';
 unlink 'nagios.cfg';
 unlink 'nagios.submit';

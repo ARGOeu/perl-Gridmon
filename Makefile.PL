@@ -27,7 +27,6 @@ WriteMakefile(
 	'Date::Format' => 0,
 	'IO::Socket::SSL' => 0,
 	'IPC::DirQueue' => 0,
-	'Nagios::NSCA::Client' => 0,
 	'Nagios::Plugin' => 0,
 	'URI' => 0,
     },
