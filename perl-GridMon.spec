@@ -1,7 +1,7 @@
 Name:           perl-GridMon
 # do not forget to change GridMon.pm to put the same version string...
-Version:        1.0.74
-Release:        2%{?dist}
+Version:        1.0.75
+Release:        1%{?dist}
 Summary:        GridMon Perl module
 License:        Apache 2
 Group:          Development/Libraries
@@ -17,7 +17,6 @@ BuildRequires:  perl(Date::Format)
 BuildRequires:  perl(ExtUtils::MakeMaker)
 BuildRequires:  perl(IO::Socket::SSL)
 BuildRequires:  perl(IPC::DirQueue)
-BuildRequires:  perl(Nagios::NSCA::Client)
 BuildRequires:  perl(Nagios::Plugin)
 BuildRequires:  perl(Test::Exception)
 BuildRequires:  perl(Test::More)
@@ -39,7 +38,6 @@ Requires:       perl(IPC::DirQueue)
 Requires:       perl(Messaging::Message)
 Requires:       perl(Messaging::Message::Queue)
 Requires:       perl(MIME::Base64)
-Requires:       perl(Nagios::NSCA::Client)
 Requires:       perl(Nagios::Plugin)
 Requires:       perl(Sys::Hostname)
 Requires:       perl(Test::Exception)
@@ -89,6 +87,8 @@ fi
 %{_mandir}/man3/*
 
 %changelog
+* Fri Mar 16 2018 Emir Imamagic <eimamagi@srce.hr> - 10.0.75-1
+- Removed support for NSCA passive reporting
 * Thu Mar 24 2016 Emir Imamagic <eimamagi@srce.hr> - 10.0.74-2
 - Change default LCG and GLITE locations
 - Added 
