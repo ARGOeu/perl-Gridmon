@@ -995,6 +995,8 @@ send the given commands to Nagios using its command pipe
 report a sanitized debugging message to syslog via syslog_debug(),
 if GRIDMON_NAGIOS_DEBUG is true
 
+=back
+
 =cut
 
 1;

@@ -1,7 +1,7 @@
 Name:           perl-GridMon
 # do not forget to change GridMon.pm to put the same version string...
 Version:        1.0.75
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        GridMon Perl module
 License:        Apache 2
 Group:          Development/Libraries
@@ -23,6 +23,9 @@ BuildRequires:  perl(Test::More)
 BuildRequires:  perl(Test::Pod)
 BuildRequires:  perl(Test::Pod::Coverage)
 BuildRequires:  perl(No::Worries)
+BuildRequires:  perl(DBI)
+BuildRequires:  perl(Messaging::Message)
+BuildRequires:  perl(YAML)
 Requires:       perl(Config::General)
 Requires:       perl(Crypt::OpenSSL::RSA)
 Requires:       perl(Crypt::OpenSSL::X509)
@@ -103,12 +106,12 @@ fi
 - SAM-2627 Include dependency on perl NoWorries
 * Wed Nov 21 2012 Nikolai Klopov <Nikolai.Klopov@cern.ch> - 1.0.62-1
 - SAM-2627 Probe libraries need to be ported to SL6
-* Tue Nov 14 2012 Marian Babik <Marian.Babik@cern.ch> - 1.0.70-1
+* Wed Nov 14 2012 Marian Babik <Marian.Babik@cern.ch> - 1.0.70-1
 - SAM-3089 Remove nagios-ggus-cert dependency from perl-GridMon
 * Tue Aug 7 2012 Christos Triantafyllidis <ctria@grid.auth.gr> - 1.0.61-2
 - Added perl(Directory::Queue) to the requires of the package
   https://tomtools.cern.ch/jira/browse/SAM-2889
-* Fri Jun 25 2012 Christos Triantafyllidis <ctria@grid.auth.gr> - 1.0.61-1
+* Mon Jun 25 2012 Christos Triantafyllidis <ctria@grid.auth.gr> - 1.0.61-1
 - Replaced perl-MIG with perl-Messaging-Message
   https://tomtools.cern.ch/jira/browse/SAM-2444
 * Thu Jun 30 2011 Emir Imamagic <eimamagi@srce.hr> - 1.0.60-1
