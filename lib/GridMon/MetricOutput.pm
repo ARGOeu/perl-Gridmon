@@ -63,6 +63,8 @@ sub new {
 Return a textual representation of the C<MetricOutput> object in WLCG
 format.
 
+=back
+
 =cut
 sub wlcg_format {
 	my ($self) = @_;

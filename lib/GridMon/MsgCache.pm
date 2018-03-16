@@ -102,6 +102,8 @@ C<get_data()> method.
 If C<$timeout> is not specified, or is less than 1, this function will wait
 indefinitely.
 
+=back
+
 =cut
 
 sub next_message {
