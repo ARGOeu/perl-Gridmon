@@ -55,7 +55,7 @@ Requires:       perl(No::Worries)
 A Perl library for interface code used for grid monitoring.
 
 %prep
-%setup -q -n GridMon-%{version}
+%setup -q -n perl-GridMon-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor
