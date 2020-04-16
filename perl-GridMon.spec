@@ -7,7 +7,7 @@ License:        Apache 2
 Group:          Development/Libraries
 URL:            http://search.cpan.org/dist/GridMon/
 Source0:        http://www.cpan.org/modules/by-module/GridMon/GridMon-%{version}.tar.gz
-BuildRoot:      %{_tmppath}/perl-%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 BuildRequires:  perl(Config::General)
 BuildRequires:  perl(Crypt::OpenSSL::RSA)
@@ -55,7 +55,7 @@ Requires:       perl(No::Worries)
 A Perl library for interface code used for grid monitoring.
 
 %prep
-%setup -q -n perl-GridMon-%{version}
+%setup -q -n GridMon-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor
