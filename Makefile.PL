@@ -8,7 +8,7 @@ $@ or print "Adding testcover target\n";
 # See lib/ExtUtils/MakeMaker.pm for details of how to influence
 # the contents of the Makefile that is written.
 WriteMakefile(
-    NAME              => 'perl-GridMon',
+    NAME              => 'GridMon',
     VERSION_FROM      => 'lib/GridMon.pm',
     AUTHOR => 'James Casey <james.casey@cern.ch>',
 #    NO_META => 1,
