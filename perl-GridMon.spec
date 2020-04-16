@@ -7,7 +7,7 @@ License:        Apache 2
 Group:          Development/Libraries
 URL:            http://search.cpan.org/dist/GridMon/
 Source0:        http://www.cpan.org/modules/by-module/GridMon/GridMon-%{version}.tar.gz
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot:      %{_tmppath}/perl-%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 BuildRequires:  perl(Config::General)
 BuildRequires:  perl(Crypt::OpenSSL::RSA)
