@@ -1,12 +1,11 @@
 Name:           perl-GridMon
 # do not forget to change GridMon.pm to put the same version string...
 Version:        1.0.75
-Release:        2%{?dist}
+Release: %(echo $GIT_COMMIT_DATE).%(echo $GIT_COMMIT_HASH)%{?dist}
 Summary:        GridMon Perl module
 License:        Apache 2
 Group:          Development/Libraries
-URL:            http://search.cpan.org/dist/GridMon/
-Source0:        http://www.cpan.org/modules/by-module/GridMon/GridMon-%{version}.tar.gz
+Source0:        perl-GridMon-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 BuildRequires:  perl(Config::General)
