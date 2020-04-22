@@ -1,7 +1,7 @@
 Name:           perl-GridMon
 # do not forget to change GridMon.pm to put the same version string...
 Version:        1.0.75
-Release: %(echo $GIT_COMMIT_DATE).%(echo $GIT_COMMIT_HASH)%{?dist}
+Release:        2%{?dist}
 Summary:        GridMon Perl module
 License:        Apache 2
 Group:          Development/Libraries
@@ -15,6 +15,7 @@ BuildRequires:  perl(Crypt::SMIME)
 BuildRequires:  perl(Date::Format)
 BuildRequires:  perl(ExtUtils::MakeMaker)
 BuildRequires:  perl(IO::Socket::SSL)
+BuildRequires:  perl(IPC::DirQueue)
 BuildRequires:  perl(Nagios::Plugin)
 BuildRequires:  perl(Test::Exception)
 BuildRequires:  perl(Test::More)
@@ -53,7 +54,7 @@ Requires:       perl(No::Worries)
 A Perl library for interface code used for grid monitoring.
 
 %prep
-%setup -q -n GridMon-%{version}
+%setup -q -n perl-GridMon-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor
