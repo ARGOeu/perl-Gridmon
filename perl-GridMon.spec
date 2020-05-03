@@ -1,7 +1,7 @@
 Name:           perl-GridMon
 # do not forget to change GridMon.pm to put the same version string...
-Version:        1.0.75
-Release:        2%{?dist}
+Version:        1.0.76
+Release:        1%{?dist}
 Summary:        GridMon Perl module
 License:        Apache 2
 Group:          Development/Libraries
@@ -89,12 +89,13 @@ fi
 %{_mandir}/man3/*
 
 %changelog
-* Fri Mar 16 2018 Emir Imamagic <eimamagi@srce.hr> - 10.0.75-1
+* Sun May 3 2020 Emir Imamagic <eimamagi@srce.hr> - 1.0.76-1
+- Fix nagios-run-check warnings
+* Fri Mar 16 2018 Emir Imamagic <eimamagi@srce.hr> - 1.0.75-1
 - Removed support for NSCA passive reporting
-* Thu Mar 24 2016 Emir Imamagic <eimamagi@srce.hr> - 10.0.74-2
+* Thu Mar 24 2016 Emir Imamagic <eimamagi@srce.hr> - 1.0.74-2
 - Change default LCG and GLITE locations
-- Added 
-* Wed Feb 13 2013 Robert Veznaver <robert.veznaver@cern.ch> - 10.0.73-1
+* Wed Feb 13 2013 Robert Veznaver <robert.veznaver@cern.ch> - 1.0.73-1
 - SAM-3136 Change GridMon::sgutils default GLOBUS location
 * Mon Jan 14 2013 Marian Babik <marian.babik@cern.ch> - 1.0.72-1
 - SAM-3054 Remove perl-TOM dependency from perl-GridMon
