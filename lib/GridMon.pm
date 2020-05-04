@@ -13,6 +13,6 @@ A set of utilites to help interface grid monitoring tools with the MSG  infrastr
 package GridMon;
 
 our @ISA = ();
-our $VERSION = "1.0.74";
+our $VERSION = "1.0.76";
 
 1;

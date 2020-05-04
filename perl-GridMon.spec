@@ -1,12 +1,11 @@
 Name:           perl-GridMon
 # do not forget to change GridMon.pm to put the same version string...
-Version:        1.0.74
-Release:        2%{?dist}
+Version:        1.0.76
+Release:        1%{?dist}
 Summary:        GridMon Perl module
 License:        Apache 2
 Group:          Development/Libraries
-URL:            http://search.cpan.org/dist/GridMon/
-Source0:        http://www.cpan.org/modules/by-module/GridMon/GridMon-%{version}.tar.gz
+Source0:        perl-GridMon-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 BuildRequires:  perl(Config::General)
@@ -17,13 +16,15 @@ BuildRequires:  perl(Date::Format)
 BuildRequires:  perl(ExtUtils::MakeMaker)
 BuildRequires:  perl(IO::Socket::SSL)
 BuildRequires:  perl(IPC::DirQueue)
-BuildRequires:  perl(Nagios::NSCA::Client)
 BuildRequires:  perl(Nagios::Plugin)
 BuildRequires:  perl(Test::Exception)
 BuildRequires:  perl(Test::More)
 BuildRequires:  perl(Test::Pod)
 BuildRequires:  perl(Test::Pod::Coverage)
 BuildRequires:  perl(No::Worries)
+BuildRequires:  perl(DBI)
+BuildRequires:  perl(Messaging::Message)
+BuildRequires:  perl(YAML)
 Requires:       perl(Config::General)
 Requires:       perl(Crypt::OpenSSL::RSA)
 Requires:       perl(Crypt::OpenSSL::X509)
@@ -39,7 +40,6 @@ Requires:       perl(IPC::DirQueue)
 Requires:       perl(Messaging::Message)
 Requires:       perl(Messaging::Message::Queue)
 Requires:       perl(MIME::Base64)
-Requires:       perl(Nagios::NSCA::Client)
 Requires:       perl(Nagios::Plugin)
 Requires:       perl(Sys::Hostname)
 Requires:       perl(Test::Exception)
@@ -54,7 +54,7 @@ Requires:       perl(No::Worries)
 A Perl library for interface code used for grid monitoring.
 
 %prep
-%setup -q -n GridMon-%{version}
+%setup -q -n perl-GridMon-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor
@@ -89,10 +89,13 @@ fi
 %{_mandir}/man3/*
 
 %changelog
-* Thu Mar 24 2016 Emir Imamagic <eimamagi@srce.hr> - 10.0.74-2
+* Sun May 3 2020 Emir Imamagic <eimamagi@srce.hr> - 1.0.76-1
+- Fix nagios-run-check warnings
+* Fri Mar 16 2018 Emir Imamagic <eimamagi@srce.hr> - 1.0.75-1
+- Removed support for NSCA passive reporting
+* Thu Mar 24 2016 Emir Imamagic <eimamagi@srce.hr> - 1.0.74-2
 - Change default LCG and GLITE locations
-- Added 
-* Wed Feb 13 2013 Robert Veznaver <robert.veznaver@cern.ch> - 10.0.73-1
+* Wed Feb 13 2013 Robert Veznaver <robert.veznaver@cern.ch> - 1.0.73-1
 - SAM-3136 Change GridMon::sgutils default GLOBUS location
 * Mon Jan 14 2013 Marian Babik <marian.babik@cern.ch> - 1.0.72-1
 - SAM-3054 Remove perl-TOM dependency from perl-GridMon
@@ -103,12 +106,12 @@ fi
 - SAM-2627 Include dependency on perl NoWorries
 * Wed Nov 21 2012 Nikolai Klopov <Nikolai.Klopov@cern.ch> - 1.0.62-1
 - SAM-2627 Probe libraries need to be ported to SL6
-* Tue Nov 14 2012 Marian Babik <Marian.Babik@cern.ch> - 1.0.70-1
+* Wed Nov 14 2012 Marian Babik <Marian.Babik@cern.ch> - 1.0.70-1
 - SAM-3089 Remove nagios-ggus-cert dependency from perl-GridMon
 * Tue Aug 7 2012 Christos Triantafyllidis <ctria@grid.auth.gr> - 1.0.61-2
 - Added perl(Directory::Queue) to the requires of the package
   https://tomtools.cern.ch/jira/browse/SAM-2889
-* Fri Jun 25 2012 Christos Triantafyllidis <ctria@grid.auth.gr> - 1.0.61-1
+* Mon Jun 25 2012 Christos Triantafyllidis <ctria@grid.auth.gr> - 1.0.61-1
 - Replaced perl-MIG with perl-Messaging-Message
   https://tomtools.cern.ch/jira/browse/SAM-2444
 * Thu Jun 30 2011 Emir Imamagic <eimamagi@srce.hr> - 1.0.60-1

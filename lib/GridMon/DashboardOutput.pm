@@ -69,7 +69,10 @@ sub new {
 Return a textual representation of the C<DashboardOutput> object in 
 dashboard notification format.
 
+=back
+
 =cut
+
 sub wlcg_format {
 	my ($self) = @_;
         my $yaml_format= {

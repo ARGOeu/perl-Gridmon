@@ -212,12 +212,10 @@ sub fetchConfHostData {
         }
     }
 
-    if (@$attrs) {
+    if ($attrs && @$attrs) {
         $attrsSearch = "(" . join (")|(" , @$attrs) . ")";
         ($attrsSearch =~ /host_name/) or $attrsSearch .= "|(host_name)";
-    } else {
-        $attrsSearch = "(host_name)";
-    }
+    } 
 
     foreach my $confFile (@{$self->{CONF_FILES}}) {
         unless(open (STD, $confFile)) {
@@ -269,12 +267,10 @@ sub fetchConfServiceData {
     	}
     }
 
-    if (@$attrs) {
+    if ($attrs && @$attrs) {
         $attrsSearch = "(" . join (")|(" , @$attrs) . ")";
         ($attrsSearch =~ /host_name/) or $attrsSearch .= "|(host_name)";
         ($attrsSearch =~ /service_description/) or $attrsSearch .= "|(service_description)";
-    } else {
-        $attrsSearch = "(host_name)|(service_description)";
     }
 
     foreach my $confFile (@{$self->{CONF_FILES}}) {
@@ -673,6 +669,13 @@ sub prepareServiceCommand {
         #       These two are the most commonly used macros.
         $command->{MACROS}->{HOSTADDRESS} = $self->{HOSTS}->{$host}->{address};
         $command->{MACROS}->{HOSTNAME} = $self->{HOSTS}->{$host}->{host_name};
+        $command->{MACROS}->{HOSTALIAS} = $self->{HOSTS}->{$host}->{alias};
+        foreach my $serviceKey (%{$self->{HOSTS}->{$host}->{services}->{$service}}) {
+            if ( $serviceKey =~ /^_(.+)?/ ) {
+                my $macro = '_SERVICE'.uc($1);
+                $command->{MACROS}->{$macro} = $self->{HOSTS}->{$host}->{services}->{$service}->{$serviceKey};
+            }
+        }
     } else {
         $self->setError("Host $host doesn't contain service $service.");
         return 0;
@@ -994,6 +997,8 @@ send the given commands to Nagios using its command pipe
 
 report a sanitized debugging message to syslog via syslog_debug(),
 if GRIDMON_NAGIOS_DEBUG is true
+
+=back
 
 =cut
 
