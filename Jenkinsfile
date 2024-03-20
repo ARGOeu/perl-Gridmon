@@ -27,6 +27,11 @@ pipeline {
                         }
                         archiveArtifacts artifacts: '**/*.rpm', fingerprint: true
                     }
+                    post {
+                        always {
+                            cleanWs()
+                        }
+                    }
                 }
                 stage ('Rocky 9') {
                     agent {
