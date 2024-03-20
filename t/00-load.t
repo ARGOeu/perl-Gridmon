@@ -1,6 +1,6 @@
 #!perl -T
 
-use Test::More tests => 7;
+use Test::More tests => 5;
 
 BEGIN {
 	use_ok( 'GridMon' );

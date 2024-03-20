@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 
-use Test::More tests => 37;
+use Test::More tests => 30;
 
 # basic include test
 BEGIN {use_ok('GridMon::Nagios::Passive');}
