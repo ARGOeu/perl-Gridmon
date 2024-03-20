@@ -26,7 +26,7 @@ WriteMakefile(
 	'Crypt::SMIME' => 0,
 	'Date::Format' => 0,
 	'IO::Socket::SSL' => 0,
-	'IPC::DirQueue' => 0,
+	'DBI' => 0,
 	'Monitoring::Plugin' => 0,
 	'URI' => 0,
     },
