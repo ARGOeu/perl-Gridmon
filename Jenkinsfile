@@ -17,6 +17,7 @@ pipeline {
                         docker {
                             image 'argo.registry:5000/epel-7-perl'
                             args '-u jenkins:jenkins'
+                            alwaysPull true
                         }
                     }
                     steps {
@@ -38,6 +39,7 @@ pipeline {
                         docker {
                             image 'argo.registry:5000/epel-9-ams'
                             args '-u jenkins:jenkins'
+                            alwaysPull true
                         }
                     }
                     steps {

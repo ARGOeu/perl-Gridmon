@@ -1,13 +1,6 @@
 CHANGES
 lib/GridMon.pm
 lib/GridMon/ConfigCache.pm
-lib/GridMon/DashboardOutput.pm
-lib/GridMon/MetricOutput.pm
-lib/GridMon/MsgCache.pm
-lib/GridMon/MsgHandler.pm
-lib/GridMon/MsgHandler/ConfigOutput.pm
-lib/GridMon/MsgHandler/DashboardInput.pm
-lib/GridMon/MsgHandler/MetricOutput.pm
 lib/GridMon/Nagios.pm
 lib/GridMon/Nagios/Downtimes.pm
 lib/GridMon/Nagios/Passive.pm
@@ -19,11 +12,6 @@ MANIFEST
 MANIFEST.SKIP
 README
 t/00-load.t
-t/01basic.t
-t/05metrics.t
-t/10add.t
-t/11add_with_meta.t
-t/15metric_details.t
 t/35downtimes.t
 t/98-pod-coverage.t
 t/99-pod.t
