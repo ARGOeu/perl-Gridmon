@@ -27,7 +27,7 @@ WriteMakefile(
 	'Date::Format' => 0,
 	'IO::Socket::SSL' => 0,
 	'IPC::DirQueue' => 0,
-	'Nagios::Plugin' => 0,
+	'Monitoring::Plugin' => 0,
 	'URI' => 0,
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
