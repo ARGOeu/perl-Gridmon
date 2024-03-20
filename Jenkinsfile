@@ -12,18 +12,19 @@ pipeline {
     stages {
         stage ('Build'){
             parallel {
-                stage ('Build Centos 6') {
+                stage ('Build Centos 7') {
                     agent {
                         docker {
-                            image 'argo.registry:5000/epel-6-perl'
+                            image 'argo.registry:5000/epel-7-perl'
                             args '-u jenkins:jenkins'
+                            alwaysPull true
                         }
                     }
                     steps {
                         echo 'Building Rpm...'
                         withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'jenkins-rpm-repo', usernameVariable: 'REPOUSER', \
                                                                     keyFileVariable: 'REPOKEY')]) {
-                            sh "/home/jenkins/build-rpm.sh -w ${WORKSPACE} -b ${BRANCH_NAME} -d centos6 -p ${PROJECT_DIR} -s ${REPOKEY}"
+                            sh "/home/jenkins/build-rpm.sh -w ${WORKSPACE} -b ${BRANCH_NAME} -d centos7 -p ${PROJECT_DIR} -s ${REPOKEY}"
                         }
                         archiveArtifacts artifacts: '**/*.rpm', fingerprint: true
                     }
@@ -33,18 +34,19 @@ pipeline {
                         }
                     }
                 }
-                stage ('Build Centos 7') {
+                stage ('Rocky 9') {
                     agent {
                         docker {
-                            image 'argo.registry:5000/epel-7-perl'
+                            image 'argo.registry:5000/epel-9-ams'
                             args '-u jenkins:jenkins'
+                            alwaysPull true
                         }
                     }
                     steps {
                         echo 'Building Rpm...'
                         withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'jenkins-rpm-repo', usernameVariable: 'REPOUSER', \
                                                                     keyFileVariable: 'REPOKEY')]) {
-                            sh "/home/jenkins/build-rpm.sh -w ${WORKSPACE} -b ${BRANCH_NAME} -d centos7 -p ${PROJECT_DIR} -s ${REPOKEY}"
+                            sh "/home/jenkins/build-rpm.sh -w ${WORKSPACE} -b ${BRANCH_NAME} -d rocky9 -p ${PROJECT_DIR} -s ${REPOKEY}"
                         }
                         archiveArtifacts artifacts: '**/*.rpm', fingerprint: true
                     }

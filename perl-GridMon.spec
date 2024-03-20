@@ -1,6 +1,6 @@
 Name:           perl-GridMon
 # do not forget to change GridMon.pm to put the same version string...
-Version:        1.0.76
+Version:        1.1.0
 Release:        1%{?dist}
 Summary:        GridMon Perl module
 License:        Apache 2
@@ -8,47 +8,8 @@ Group:          Development/Libraries
 Source0:        perl-GridMon-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
-BuildRequires:  perl(Config::General)
-BuildRequires:  perl(Crypt::OpenSSL::RSA)
-BuildRequires:  perl(Crypt::OpenSSL::X509)
-BuildRequires:  perl(Crypt::SMIME)
-BuildRequires:  perl(Date::Format)
-BuildRequires:  perl(ExtUtils::MakeMaker)
-BuildRequires:  perl(IO::Socket::SSL)
-BuildRequires:  perl(IPC::DirQueue)
-BuildRequires:  perl(Nagios::Plugin)
-BuildRequires:  perl(Test::Exception)
-BuildRequires:  perl(Test::More)
-BuildRequires:  perl(Test::Pod)
-BuildRequires:  perl(Test::Pod::Coverage)
-BuildRequires:  perl(No::Worries)
-BuildRequires:  perl(DBI)
-BuildRequires:  perl(Messaging::Message)
-BuildRequires:  perl(YAML)
-Requires:       perl(Config::General)
-Requires:       perl(Crypt::OpenSSL::RSA)
-Requires:       perl(Crypt::OpenSSL::X509)
-Requires:       perl(Crypt::SMIME)
 Requires:       perl(DBI)
 Requires:       perl(DBD::SQLite)
-Requires:       perl(Date::Format)
-Requires:       perl(Date::Parse)
-Requires:       perl(Digest::SHA1)
-Requires:       perl(Directory::Queue)
-Requires:       perl(IO::Socket::SSL)
-Requires:       perl(IPC::DirQueue)
-Requires:       perl(Messaging::Message)
-Requires:       perl(Messaging::Message::Queue)
-Requires:       perl(MIME::Base64)
-Requires:       perl(Nagios::Plugin)
-Requires:       perl(Sys::Hostname)
-Requires:       perl(Test::Exception)
-Requires:       perl(Test::More)
-Requires:       perl(Test::Pod)
-Requires:       perl(Test::Pod::Coverage)
-Requires:       perl(YAML)
-Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
-Requires:       perl(No::Worries)
 
 %description
 A Perl library for interface code used for grid monitoring.
@@ -76,12 +37,6 @@ make test
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post
-if [ -x /etc/init.d/msg-to-handler ]; then
-  # try to restart msg-to-handler in case handler code has changed
-  /etc/init.d/msg-to-handler condrestart
-fi
-
 %files
 %defattr(-,root,root,-)
 %doc CHANGES README
@@ -89,6 +44,10 @@ fi
 %{_mandir}/man3/*
 
 %changelog
+* Wed Mar 20 2024 Emir Imamagic <eimamagi@srce.hr> - 1.1.0-1
+- Remove depricated modules
+- Remove manual list of requirements
+- Migrate from Nagios::Plugin to Monitoring::Plugin
 * Sun May 3 2020 Emir Imamagic <eimamagi@srce.hr> - 1.0.76-1
 - Fix nagios-run-check warnings
 * Fri Mar 16 2018 Emir Imamagic <eimamagi@srce.hr> - 1.0.75-1

@@ -25,7 +25,7 @@
 
 package GridMon::certutils;
 
-use Nagios::Plugin;
+use Monitoring::Plugin;
 use IO::Socket::SSL qw(inet4);
 use Net::SSLeay;
 use Date::Parse;
