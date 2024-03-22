@@ -31,7 +31,6 @@ This module requires these other modules and libraries:
   perl(Directory::Queue)
   perl(Exporter)
   perl(IO::Socket::SSL)
-  perl(IPC::DirQueue)
   perl(JSON)
   perl(MIME::Base64)
   perl(Messaging::Message)
